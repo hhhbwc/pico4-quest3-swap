@@ -11,6 +11,8 @@
 
 打开 Dock 右侧的快捷设置面板,你会看到 Quest 3 的头显和 Touch Plus 手柄,而不是 PICO 4 的设备图。
 
+![Quest 3 设备图效果](docs/panel-quest3.jpg)
+
 ### 素材来源
 
 - **头显**:Meta 官方新闻中心的透明底正视渲染图(三摄像头正脸,与原槽位角度完全一致)
@@ -55,6 +57,8 @@ A tiny LSPosed / Zygisk-Vector module for PICO 4: swaps the quick settings panel
 
 Open the quick settings panel on the right side of the Dock and you'll see the Quest 3 headset and Touch Plus controllers instead of the PICO 4 device art.
 
+![Quest 3 device art](docs/panel-quest3.jpg)
+
 ### Art sources
 
 - **Headset**: official transparent front render from Meta's newsroom (three cameras, matches the original slot angle exactly)
@@ -98,6 +102,8 @@ Tested only on a rooted PICO 4 (firmware 5.13.7) with LSPosed / Zygisk-Vector. F
 ### Как это выглядит
 
 Откройте панель быстрых настроек справа от дока — вместо изображений PICO 4 вы увидите шлем Quest 3 и контроллеры Touch Plus.
+
+![Изображения Quest 3](docs/panel-quest3.jpg)
 
 ### Источники изображений
 
