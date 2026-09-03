@@ -65,18 +65,22 @@ public final class Quest3SwapHook implements IXposedHookLoadPackage {
 
     private static void swapDeviceImages(Activity activity, ViewGroup root) {
         try {
-            replaceImage(activity, root, "quickSettings_iconHmd", QuestImages.hmd(null));
+            replaceImage(activity, root, "quickSettings_iconHmd", QuestImages.hmd(null), 1.6f);
             replaceImage(activity, root, "quickSettings_iconControllerLeft",
-                    QuestImages.controller_left(null));
+                    QuestImages.controller_left(null), 0.7f);
             replaceImage(activity, root, "quickSettings_iconControllerRight",
-                    QuestImages.controller_right(null));
-            log("device art swapped to Quest 3");
+                    QuestImages.controller_right(null), 0.7f);
+            log("device art swapped to Quest 3 (hmd +60%, controllers -30%)");
         } catch (Throwable throwable) {
             log("swap failed: " + throwable);
         }
     }
 
     private static void replaceImage(Activity activity, ViewGroup root, String idName, Bitmap bitmap) {
+        replaceImage(activity, root, idName, bitmap, 1.0f);
+    }
+    private static void replaceImage(Activity activity, ViewGroup root, String idName,
+            Bitmap bitmap, float scale) {
         int id = activity.getResources().getIdentifier(idName, "id", SETTINGS);
         if (id == 0) {
             log("id not found: " + idName);
@@ -86,7 +90,13 @@ public final class Quest3SwapHook implements IXposedHookLoadPackage {
         if (!(view instanceof ImageView) || bitmap == null) {
             return;
         }
-        ((ImageView) view).setImageDrawable(new BitmapDrawable(activity.getResources(), bitmap));
+        Bitmap scaled = bitmap;
+        if (scale != 1.0f) {
+            int w = Math.max(1, (int) (bitmap.getWidth() * scale));
+            int h = Math.max(1, (int) (bitmap.getHeight() * scale));
+            scaled = Bitmap.createScaledBitmap(bitmap, w, h, true);
+        }
+        ((ImageView) view).setImageDrawable(new BitmapDrawable(activity.getResources(), scaled));
     }
 
     private static void log(String message) {
